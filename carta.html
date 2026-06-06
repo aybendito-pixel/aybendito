@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--
+  ====================== CARTA · AY BENDITO ======================
+  CÓMO EDITAR LA CARTA (muy fácil):
+
+  · CAMBIAR UN PRECIO O UN PLATO:
+      busca la línea del plato, por ejemplo:
+        <li><span class="d">Gambas</span><span class="pr">16,50 €</span></li>
+      cambia el texto del plato o el número del precio. No borres
+      las etiquetas < >.
+
+  · AÑADIR UN PLATO:
+      copia una línea <li>...</li> entera, pégala debajo y cambia
+      el nombre y el precio.
+
+  · QUITAR UN PLATO:
+      borra su línea <li>...</li> completa.
+
+  · CAMBIAR EL NOMBRE DE UNA CATEGORÍA:
+      busca el texto dentro de <h2 class="cat">...</h2>
+  ===============================================================
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta | Ay Bendito Chiringuito</title>
+<meta name="description" content="Carta de Ay Bendito Chiringuito: tapas, ensaladas, marisco, pescaíto frito, cazuelas, espetos a la leña, carnes a la brasa y bebidas.">
+<link rel="icon" href="img/logo-oscuro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#f7eedd;--sand-deep:#efe1c6;--sea:#0e4a5e;--sea-deep:#08323f;
+    --foam:#fbf6ec;--sunset:#e07a51;--gold:#e8b53d;--ink:#23201a;--ink-soft:#6b6458;
+    --line:rgba(35,32,26,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Karla',sans-serif;background:var(--sand);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+
+  /* TOP BAR */
+  .bar{position:sticky;top:0;z-index:30;background:rgba(247,238,221,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px 26px}
+  .bar .logo img{height:44px}
+  .back{font-size:.86rem;font-weight:700;color:var(--sea);display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border:1.5px solid var(--sea);border-radius:999px;transition:.3s}
+  .back:hover{background:var(--sea);color:var(--foam)}
+
+  /* HEADER */
+  .head{text-align:center;padding:70px 26px 40px;background:var(--sea-deep);color:var(--foam)}
+  .head img{height:120px;margin:0 auto 22px}
+  .head h1{font-size:clamp(2.4rem,6vw,3.6rem);margin-bottom:8px}
+  .head p{font-style:italic;font-family:'Fraunces',serif;color:var(--gold);font-size:1.1rem}
+
+  /* MENU LAYOUT */
+  .menu{padding:64px 0 40px}
+  .cols{column-count:2;column-gap:56px}
+  @media(max-width:760px){.cols{column-count:1}}
+  .group{break-inside:avoid;margin-bottom:46px;display:inline-block;width:100%}
+  .cat{display:flex;align-items:center;justify-content:center;gap:16px;font-size:1.45rem;letter-spacing:.04em;text-transform:uppercase;color:var(--sea);margin-bottom:22px;text-align:center}
+  .cat::before,.cat::after{content:"";height:1.5px;background:var(--sunset);flex:1;max-width:46px}
+  ul{list-style:none}
+  li{display:flex;align-items:baseline;gap:8px;padding:7px 0;border-bottom:1px dotted var(--line)}
+  li:last-child{border-bottom:0}
+  .d{font-weight:600;font-size:.98rem}
+  .d small{display:block;font-weight:400;font-style:italic;color:var(--ink-soft);font-size:.82rem}
+  .dots{flex:1;border-bottom:1px dotted rgba(35,32,26,.28);transform:translateY(-3px);min-width:14px}
+  .pr{font-weight:700;color:var(--sunset);white-space:nowrap;font-size:.96rem}
+
+  .extras{text-align:center;background:var(--sand-deep);border-radius:14px;padding:20px;margin:10px auto 0;max-width:640px;font-weight:600}
+  .extras span{color:var(--sunset)}
+
+  .closing{text-align:center;padding:50px 26px 70px}
+  .closing .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:700;transition:.3s}
+  .btn-primary{background:var(--sunset);color:#fff}.btn-primary:hover{background:var(--sea);transform:translateY(-2px)}
+  .btn-wa{background:#25d366;color:#fff}.btn-wa:hover{transform:translateY(-2px)}
+
+  footer{background:var(--sea-deep);color:rgba(251,246,236,.65);text-align:center;padding:34px 0;font-size:.82rem}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <a href="index.html" class="logo"><img src="img/logo-oscuro.png" alt="Ay Bendito Chiringuito"></a>
+  <a href="index.html" class="back">← Volver al inicio</a>
+</div>
+
+<header class="head">
+  <img src="img/logo-blanco.png" alt="Ay Bendito Chiringuito">
+  <h1>Nuestra carta</h1>
+  <p>Brasa, fritura y producto del día frente al mar</p>
+</header>
+
+<main class="menu">
+  <div class="wrap">
+    <div class="cols">
+
+      <div class="group">
+        <h2 class="cat">Benditas Tapas</h2>
+        <ul>
+          <li><span class="d">Ensaladilla Rusa</span><span class="dots"></span><span class="pr">3,20 €</span></li>
+          <li><span class="d">Albóndigas en salsa de almendras</span><span class="dots"></span><span class="pr">3,20 €</span></li>
+          <li><span class="d">Gilda de anchoa o boquerón</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Banderilla de atún y queso</span><span class="dots"></span><span class="pr">3,40 €</span></li>
+          <li><span class="d">Sardina ahumada con mermelada de tomate</span><span class="dots"></span><span class="pr">3,40 €</span></li>
+          <li><span class="d">Boquerones en vinagre con patatas</span><span class="dots"></span><span class="pr">2,70 €</span></li>
+          <li><span class="d">Croquetas de jamón ibérico <small>2 uds.</small></span><span class="dots"></span><span class="pr">3,20 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Ensaladas</h2>
+        <ul>
+          <li><span class="d">Ensaladilla rusa con lomo de atún y gambas</span><span class="dots"></span><span class="pr">7,50 €</span></li>
+          <li><span class="d">Tomate con lomo de atún</span><span class="dots"></span><span class="pr">8,50 €</span></li>
+          <li><span class="d">Ensalada mixta con vinagreta</span><span class="dots"></span><span class="pr">8,00 €</span></li>
+          <li><span class="d">Pimientos asados y cebolla</span><span class="dots"></span><span class="pr">7,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Marisco y Plancha</h2>
+        <ul>
+          <li><span class="d">Almejas al vino blanco</span><span class="dots"></span><span class="pr">11,50 €</span></li>
+          <li><span class="d">Peregrinas</span><span class="dots"></span><span class="pr">7,50 €</span></li>
+          <li><span class="d">Rosada</span><span class="dots"></span><span class="pr">11,00 €</span></li>
+          <li><span class="d">Navajas</span><span class="dots"></span><span class="pr">10,50 €</span></li>
+          <li><span class="d">Gambas</span><span class="dots"></span><span class="pr">16,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Pescaíto Frito</h2>
+        <ul>
+          <li><span class="d">Rosada con ensalada mixta</span><span class="dots"></span><span class="pr">11,00 €</span></li>
+          <li><span class="d">Anillas de calamar</span><span class="dots"></span><span class="pr">12,50 €</span></li>
+          <li><span class="d">Pulpo</span><span class="dots"></span><span class="pr">11,50 €</span></li>
+          <li><span class="d">Calamaritos</span><span class="dots"></span><span class="pr">13,00 €</span></li>
+          <li><span class="d">Boquerones vitorianos</span><span class="dots"></span><span class="pr">8,50 €</span></li>
+          <li><span class="d">Boquerones al limón</span><span class="dots"></span><span class="pr">9,00 €</span></li>
+          <li><span class="d">Adobo de cazón con ensalada mixta</span><span class="dots"></span><span class="pr">9,50 €</span></li>
+          <li><span class="d">Jibia</span><span class="dots"></span><span class="pr">9,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Otras Frituritas</h2>
+        <ul>
+          <li><span class="d">Patatas fritas</span><span class="dots"></span><span class="pr">6,00 €</span></li>
+          <li><span class="d">Lagrimitas de pollo con patatas</span><span class="dots"></span><span class="pr">9,50 €</span></li>
+          <li><span class="d">Croquetas de jamón ibérico con alioli <small>6 uds.</small></span><span class="dots"></span><span class="pr">9,00 €</span></li>
+          <li><span class="d">Cachopo ibérico con patatas</span><span class="dots"></span><span class="pr">18,50 €</span></li>
+          <li><span class="d">Buñuelos de gamba blanca con alioli <small>5 uds.</small></span><span class="dots"></span><span class="pr">8,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Cazuelas Benditas</h2>
+        <ul>
+          <li><span class="d">Patatas bravas</span><span class="dots"></span><span class="pr">8,50 €</span></li>
+          <li><span class="d">Fideos tostados con alioli gratinado</span><span class="dots"></span><span class="pr">12,50 €</span></li>
+          <li><span class="d">Atún encebollado con almendra frita</span><span class="dots"></span><span class="pr">12,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Cazuelas con dos huevos</h2>
+        <ul>
+          <li><span class="d">Albóndigas en salsa de almendras</span><span class="dots"></span><span class="pr">9,50 €</span></li>
+          <li><span class="d">Gambón al pilpil</span><span class="dots"></span><span class="pr">12,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Al Espeto</h2>
+        <ul>
+          <li><span class="d">Sardinas</span><span class="dots"></span><span class="pr">5,50 €</span></li>
+          <li><span class="d">Calamar</span><span class="dots"></span><span class="pr">35,50 €</span></li>
+          <li><span class="d">Dorada</span><span class="dots"></span><span class="pr">24,00 € <small>según peso</small></span></li>
+          <li><span class="d">Lubina</span><span class="dots"></span><span class="pr">24,00 € <small>según peso</small></span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">A la Brasa</h2>
+        <ul>
+          <li><span class="d">Pata de pulpo</span><span class="dots"></span><span class="pr">26,00 €</span></li>
+          <li><span class="d">Pluma de cerdo marinada</span><span class="dots"></span><span class="pr">15,50 €</span></li>
+          <li><span class="d">Churrasco de pollo marinado</span><span class="dots"></span><span class="pr">12,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Refrescos</h2>
+        <ul>
+          <li><span class="d">Agua pequeña</span><span class="dots"></span><span class="pr">1,50 €</span></li>
+          <li><span class="d">Agua grande</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">Agua con gas</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">Coca-Cola / Zero / Zero Zero</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">Fanta limón / naranja</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">7Up</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">Tónica Schweppes</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">Tónica Royal Bliss / Frutos Rojos</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">Fuze Tea limón / maracuyá</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Aquarius naranja / limón</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Zumo de piña</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+          <li><span class="d">Red Bull</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Café</span><span class="dots"></span><span class="pr">2,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Cervezas</h2>
+        <ul>
+          <li><span class="d">Caña Cruzcampo</span><span class="dots"></span><span class="pr">2,30 €</span></li>
+          <li><span class="d">Caña Águila</span><span class="dots"></span><span class="pr">2,70 €</span></li>
+          <li><span class="d">Pinta Cruzcampo</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Pinta Águila</span><span class="dots"></span><span class="pr">4,00 €</span></li>
+          <li><span class="d">San Miguel</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Cruzcampo</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Águila Dorada</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Heineken</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Corona</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Amstel 0,0</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Cruzcampo 0,0</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+          <li><span class="d">Radler</span><span class="dots"></span><span class="pr">3,00 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Aperitivos</h2>
+        <ul>
+          <li><span class="d">Tinto de verano / Blanca</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Sangría</span><span class="dots"></span><span class="pr">5,00 €</span></li>
+          <li><span class="d">Aperol Spritz</span><span class="dots"></span><span class="pr">7,00 €</span></li>
+          <li><span class="d">Vermouth</span><span class="dots"></span><span class="pr">5,00 €</span></li>
+          <li><span class="d">Cava</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Vino Blanco</h2>
+        <ul>
+          <li><span class="d">Verdejo</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Albariño</span><span class="dots"></span><span class="pr">3,80 €</span></li>
+          <li><span class="d">Semidulce</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Frizzante</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Rosado</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="cat">Vino Tinto</h2>
+        <ul>
+          <li><span class="d">Ribera</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+          <li><span class="d">Rioja</span><span class="dots"></span><span class="pr">3,50 €</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="extras">Pan <span>1,00 €</span> &nbsp;·&nbsp; Alioli <span>0,50 €</span> &nbsp;·&nbsp; Aceitunas <span>1,00 €</span></p>
+  </div>
+</main>
+
+<section class="closing">
+  <h2 style="color:var(--sea);font-size:1.8rem;margin-bottom:14px">¿Reservamos mesa?</h2>
+  <div class="btns">
+    <a href="tel:+34600000000" class="btn btn-primary">📞 Llamar</a>
+    <a href="https://wa.me/34600000000" class="btn btn-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+</section>
+
+<footer>© 2026 Ay Bendito Chiringuito · Playa de Rincón de la Victoria, Málaga</footer>
+</body>
+</html>
